@@ -26,6 +26,7 @@ def start_app
 end
 
 class User
+  
   def initialize(name, age)
     @name = name 
     @age = age
@@ -35,9 +36,9 @@ class User
     @name 
   end
   
- def age
+  def age
     @age
- end
+  end
 
   def self.create_account
 
@@ -55,16 +56,19 @@ class User
     user_password = gets.chomp
     @@balance = 0.0
     
-    #create an Account Object using the username userpassword and balance
+    #create an Account Object using the username userpassword and balance.
+    #The Account object will contain the username, password and the balance of the account
     user_first_name = Account.new(user_name, user_password, @@balance)
-    puts user_first_name.user_name
-    puts user_first_name.password
-    puts user_first_name.balance
+    #Test wether the information from the user class has been retained
     puts "would you like to print you user details"
     user_response = gets.chomp
     if user_response == "y"
       print_user_details
     end
+    #Tester for deposit method in the Account Class
+    Account.deposit_to_account
+    #Tester for the Withdrawal method in the Account Class
+    Account.withdraw_from_account
   end
   
   def self.print_user_details
@@ -79,7 +83,7 @@ class Account
     def initialize(user_name, password, balance)
       @user_name = user_name
       @password = password
-      @balance = balance
+      @@balance = balance
     end
 
     def user_name
@@ -91,15 +95,38 @@ class Account
     end
     
     def balance
-      @balance
+      @@balance
     end
 
     def new_account_number
       unique_id = 6.times.map { rand(0..7) }.join.to_i
     end
 
-    def check_account_exists(user_name, password)
-      
+    #This method works assuming that you are in the account that you want to deposit to
+    def self.deposit_to_account
+      puts "How much would you like to deposit?"
+      deposit_amount = gets.chomp.to_f
+      @@balance = deposit_amount + @@balance
+      puts @@balance
+    end
+    
+    #Method to withdraw money from the current account
+    def self.withdraw_from_account
+      puts "How much would you like to withdraw from the account"
+      user_withdrawal_amount = gets.chomp.to_f
+      if user_withdrawal_amount > @@balance
+        puts "Sorry but you cannot withdraw an amount that exceeds the balance of the account. Please Try again"
+        withdraw_from_account
+
+      elsif user_withdrawal_amount <= @@balance
+        @@balance = @@balance - user_withdrawal_amount
+        puts "Withdrawal successful the current balance of the account is #{@@balance}"
+      end
+    end
+
+    #def check_account_exists(user_name, password)
+
+
 end
 
 start_app
