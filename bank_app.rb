@@ -97,6 +97,9 @@ class Account
     def new_account_number
       unique_id = 6.times.map { rand(0..7) }.join.to_i
     end
+
+    def check_account_exists(user_name, password)
+      
 end
 
 start_app
