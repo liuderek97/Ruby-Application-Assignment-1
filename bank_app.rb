@@ -50,8 +50,15 @@ class ATM
       user_name = gets.chomp
       #user is a User object that contains user_name
       @user = User.find_by_user_name(user_name)
-      break if @user
-      puts "username not found" 
+      if @user
+        puts "Please enter your password"
+        password = gets.chomp
+        if User.password_checker(password)
+          break
+        end
+      else
+        puts "username not found" 
+      end
     end
     menu
   end
@@ -150,18 +157,20 @@ class User
   #class level variables hold data that belongs to the class
   #class instance array containing a hash for each user
   @users = [ 
-    { user_name: "johny123", name: "john", age: 19, password: "password" }, 
-    { user_name: "mike3",    name: "mike", age: 25, password: "password" },
-    { user_name: "guy",      name: "guy",  age: 27, password: "password" }
+    { user_name: "johny123", name: "john", age: "19", password: "password" }, 
+    { user_name: "mike3",    name: "mike", age: "25", password: "password" },
+    { user_name: "guy",      name: "guy",  age: "27", password: "password" }
   ]
+  def self.password_checker(password)
+  
+  end
 
   def self.find_by_user_name(user_name)
     #detect iterates through the array(users), passes each array entry into the block 
     #when the block returns true it returns that user hash
     user = @users.detect { |user| user[:user_name] == user_name }
     #if user is true(has a value), calls make_instance for user, otherwise nil
-
-    # user ? make_instance(user) : nil
+    user ? make_instance(user) : nil
   end
 
   def self.make_instance(user)
