@@ -1,3 +1,4 @@
+puts "git test"
 def start_app
 	puts "Welcome to the banking app"
 
