@@ -162,7 +162,7 @@ class User
     { user_name: "guy",      name: "guy",  age: "27", password: "password" }
   ]
   def self.password_checker(password)
-  
+    password = @users
   end
 
   def self.find_by_user_name(user_name)
