@@ -109,7 +109,7 @@ class ATM
   end
 
   def menu
-    Account.display_accounts(user)
+    Account.display_accounts(@user)
   
   end
 
