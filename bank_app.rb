@@ -37,32 +37,30 @@ class ATM
     
     loop do 
       puts "What is your full name?"
-      name = gets.chomp
-      if name.empty?
+      @name = gets.chomp
+      if @name.empty?
         puts "Must not be blank"
       else
         break
       end
     end
 
-    age = 0
     loop do 
       puts "What is your age"
-      age = gets.chomp.to_i
-      if age == 0
+      @age = gets.chomp.to_i
+      if @age == 0
         puts "Must not be blank"
-      elsif age < 16 
+      elsif @age < 16 
         puts "must be atleast 16 to create an account with us"
       else
         break
       end
     end
 
-    user_name = ""
     loop do
       puts "What would you like your username to be?"
-      user_name = gets.chomp
-      if user_name == ""
+      @user_name = gets.chomp
+      if @user_name == ""
         puts "Must not be blank"
       elsif User.find_by_user_name(user_name)
         puts "sorry, username already taken"
@@ -71,11 +69,10 @@ class ATM
       end
     end
 
-    password = ""
     loop do 
       puts "What would you like your password to be?"
-      password = gets.chomp
-      if password == ""
+      @password = gets.chomp
+      if @password == ""
         puts "Must not be blank"
       else
         break
@@ -122,7 +119,7 @@ class User
   @users = [ 
     { user_name: "johny123", name: "john", age: "19", password: "password1" }, 
     { user_name: "mike3",    name: "mike", age: "25", password: "password2" },
-    { user_name: "guy123",      name: "guy",  age: "27", password: "password3" }
+    { user_name: "guy123",   name: "guy",  age: "27", password: "password3" }
   ]
 
   def self.menu
@@ -216,8 +213,6 @@ class Account
     @name      = name
     @balance   = balance
   end
-  
- 
 end
 
 ATM.new.run 
