@@ -64,11 +64,11 @@ class ATM
   end
 
   def create_account 
-    name = ""
+    
     loop do 
       puts "What is your full name?"
       name = gets.chomp
-      if name == ""
+      if name.empty?
         puts "Must not be blank"
       else
         break
