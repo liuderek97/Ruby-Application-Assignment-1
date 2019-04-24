@@ -122,33 +122,6 @@ class ATM
   def deposit(amount)
     
   end
-
-  # def self.create_account
-  #   puts "Please enter your First Name"
-  #   @@user_first_name = gets.chomp
-  #   puts"Please enter your Last Name"
-  #   @@user_last_name = gets.chomp
-
-  #   puts "Welcome #{@@user_first_name} Please enter your age"
-  #   @@user_age = gets.chomp
-  #   system "clear"
-  #   puts "Please enter a username"
-  #   user_name = gets.chomp
-  #   puts"Please enter the password you would like to use"
-  #   user_password = gets.chomp
-  #   @@balance = 0.0
-    
-  #   #create an Account Object using the username userpassword and balance
-  #   user_first_name = Account.new(user_name, user_password, @@balance)
-  #   puts user_first_name.user_name
-  #   puts user_first_name.password
-  #   puts user_first_name.balance
-  #   puts "would you like to print you user details"
-  #   user_response = gets.chomp
-  #   if user_response == "y"
-  #     print_user_details
-  #   end
-  # end
 end
 
 class User
@@ -162,12 +135,10 @@ class User
   ]
 
   def self.password_checker(password, user)
-    p password
     password  = @users.find { |user| user[:password] == password } && 
     user = @users.detect { |user| user[:user_name] == user }
-    return true 
-    p user 
-    p password
+    return true
+    p user
   end
 
   def self.find_by_user_name(user_name)
@@ -189,7 +160,7 @@ class User
     #finds and returns the user as an instance
     find_by_user_name(user_name)
   end
-
+ 
   #attribute accessor, to get and set variables on an instance level
   attr_accessor :user_name, :name, :age, :password
 
@@ -199,12 +170,6 @@ class User
     @age       = age
     @password  = password
   end
-
-  # def self.print_user_details
-  #   puts "First Name: #{@@user_first_name}"
-  #   puts "Last Name: #{@@user_last_name}"
-  #   puts "Age: #{@@user_age}"
-  # end
 end
 
 class Account
@@ -244,7 +209,7 @@ class Account
   end
   
   def self.display_accounts(user)
-    
+    find_by_user_name(user) 
   end
 
   attr_accessor :id, :user_name, :name, :balance
@@ -255,24 +220,35 @@ class Account
     @name      = name
     @balance   = balance
   end
+  
+  def withdraw(withdraw_amount)
+    $balance = balance - withdraw_amount
+    if $balance < 0
+      puts "withdrawal amount exceeds account balance please enter an amount less than or equal to the balance of the account"
 
-    # def initialize(user_name, password, balance)
-    #   @user_name = user_name
-    #   @password = password
-    #   @balance = balance
-    # end
+    elsif $balance >= 0
+      puts "Successful withdrawal. You withdrew #{withdraw_amount}"
+      puts "Would you like to print the current balance of your account? (Y/N)"
+      user_response = gets.chomp.downcase
+      if user_response == "y" || user_response == "yes"
+        display_balance
+      end
+    end
+  end
 
-    # def user_name
-    #   @user_name
-    # end
-
-    # def password
-    #   @password
-    # end
-    
-    # def balance
-    #   @balance
-    # end
+  def deposit (deposit_amount)
+    $balance = deposit_amount + $balance
+    puts "Would you like to print the Balance"
+    user_response = gets.chomp.downcase
+    if user_response == "y" user_response == "yes"
+        display_balance
+    elsif user_response == "n" user_response == "no"
+      puts "Would you like to do anything else"
+      user_input == gets.chomp.downcase
+      if user_input == "y"
+      end
+    end
+  end
 end
 
 ATM.new.run 
