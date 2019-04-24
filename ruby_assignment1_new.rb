@@ -71,7 +71,7 @@ module Account
 end
 
 class User
-
+    attr_reader :first_name, :last_name, :age, :user_name, :password
     def initialize(first_name,last_name, age, user_name, password)
         @first_name = first_name
         @last_name = last_name
@@ -130,4 +130,5 @@ test.verify_user_exists("LiuDerek", "hello")
 test1 = User.new("Derek3", "Liu", 21, "LiuDerek3", "hello3")
 test1.verify_user_exists("LiuDerek3", "hello3")
 #test to see if the account exists when entering wrong credentials
-test1.verify_user_exists("LiuDerek", "hello")
+#test1.verify_user_exists("LiuDerek", "hello")
+puts test1.first_name
