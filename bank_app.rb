@@ -177,6 +177,7 @@ class Account
   def self.display_accounts(user)
     puts "user passed is #{user}"
     
+    
   end
 
   attr_accessor :id, :user_name, :name, :balance
