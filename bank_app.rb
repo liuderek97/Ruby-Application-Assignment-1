@@ -45,6 +45,7 @@ class ATM
       end
     end
 
+    @age = 0
     loop do 
       puts "What is your age"
       @age = gets.chomp.to_i
@@ -57,18 +58,20 @@ class ATM
       end
     end
 
+    @user_name = ""
     loop do
       puts "What would you like your username to be?"
       @user_name = gets.chomp
       if @user_name == ""
         puts "Must not be blank"
-      elsif User.find_by_user_name(user_name)
+      elsif User.find_by_user_name(@user_name)
         puts "sorry, username already taken"
       else 
         break
       end
     end
 
+    @password = ""
     loop do 
       puts "What would you like your password to be?"
       @password = gets.chomp
@@ -79,7 +82,7 @@ class ATM
       end
     end
     #@create method returns the instance
-    @user = User.create(user_name, name, age, password)
+    @user = User.create(@user_name, @name, @age, @password)
   end
 
   # def withdraw(withdraw_amount)
