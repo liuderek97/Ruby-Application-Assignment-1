@@ -40,17 +40,18 @@ module Account
             puts "Invalid option please try again"
         end
     end
-
 end
 
-class User
+# class User
 
-    def initialize(name, age, )
+#     def initialize(name, age )             
+#     end
 
-include Account
-Account.create_account(:hello, 40.0)
-Account.does_account_exist
-Account.account_deposit(:hi, 10.0)
-Account.account_withdraw(:hi, 50.0)
-Account.account_withdraw(:hello, 40.0)
+    include Account
+    Account.create_account(:hello, 40.0)
+    Account.does_account_exist
+    Account.account_deposit(:hi, 10.0)
+    Account.account_withdraw(:hi, 50.0)
+    Account.account_withdraw(:hello, 40.0)
 
+# end
