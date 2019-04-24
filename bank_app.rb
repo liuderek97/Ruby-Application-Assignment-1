@@ -1,29 +1,3 @@
-# def start_app
-# 	puts "Welcome to the banking app"
-
-# 	puts "Please Login or Create an Account"
-# 	user_response = gets.chomp.downcase
-
-#   if user_response.include?("login")
-        
-#   	puts "Please enter your name"
-    
-#     puts "Please enter your password"
-    
-#   elsif user_response.include?("create")
-#     User.create_account
-#   end
-
-#   puts "What would you like to do? (options: Balance, Deposit, Withdraw)"
-#   user_response = gets.chomp.downcase
-
-#   if user_response == "balance"
-#     puts balance
-#   elsif
-#     puts "Invalid selection"
-#   end
-# end
-
 #ATM class interacts with the user 
 class ATM
   def run
@@ -53,14 +27,9 @@ class ATM
       if @user
         puts "Please enter your password"
         password = gets.chomp
-        if User.password_checker(password, @user)
-          break
-        end
-      else
-        puts "username not found" 
-      end
+        User.password_checker(password, user_name) 
+      end     
     end
-    menu
   end
 
   def create_account 
@@ -115,13 +84,6 @@ class ATM
     @user = User.create(user_name, name, age, password)
   end
 
-  def menu
-    Account.display_accounts(@user)
-  end
-
-  def deposit(amount)
-    
-  end
 end
 
 class User
@@ -134,11 +96,15 @@ class User
     { user_name: "guy123",      name: "guy",  age: "27", password: "password3" }
   ]
 
-  def self.password_checker(password, user)
-    password  = @users.find { |user| user[:password] == password } && 
-    user = @users.detect { |user| user[:user_name] == user }
-    return true
-    p user
+  def self.menu
+    puts "hello"
+    Account.display_accounts(@logged_user)
+  end
+
+  def self.password_checker(password, user_name)
+    @logged_user = @users.find { |user| (user[:password] == password && user[:user_name] == user_name) }
+    puts "password #{@logged_user}"
+    menu
   end
 
   def self.find_by_user_name(user_name)
@@ -174,9 +140,9 @@ end
 
 class Account
   @accounts = [ 
-    { id: 123, user_name: "johny123", name: "savings",   balance:   15 }, 
-    { id: 345, user_name: "guy",      name: "checking",  balance: 1530 },
-    { id: 567, user_name: "guy",      name: "investing", balance:  925 }
+    { id: 123, user_name: "johny123",    name: "savings",   balance:   15 }, 
+    { id: 345, user_name: "guy123",      name: "checking",  balance: 1530 },
+    { id: 567, user_name: "guy123",      name: "investing", balance:  925 }
   ]
 
   def self.find_by_user_name(user_name)
@@ -209,7 +175,8 @@ class Account
   end
   
   def self.display_accounts(user)
-    find_by_user_name(user) 
+    puts "user passed is #{user}"
+    
   end
 
   attr_accessor :id, :user_name, :name, :balance
@@ -221,34 +188,34 @@ class Account
     @balance   = balance
   end
   
-  def withdraw(withdraw_amount)
-    $balance = balance - withdraw_amount
-    if $balance < 0
-      puts "withdrawal amount exceeds account balance please enter an amount less than or equal to the balance of the account"
+  # def withdraw(withdraw_amount)
+  #   $balance = balance - withdraw_amount
+  #   if $balance < 0
+  #     puts "withdrawal amount exceeds account balance please enter an amount less than or equal to the balance of the account"
 
-    elsif $balance >= 0
-      puts "Successful withdrawal. You withdrew #{withdraw_amount}"
-      puts "Would you like to print the current balance of your account? (Y/N)"
-      user_response = gets.chomp.downcase
-      if user_response == "y" || user_response == "yes"
-        display_balance
-      end
-    end
-  end
+  #   elsif $balance >= 0
+  #     puts "Successful withdrawal. You withdrew #{withdraw_amount}"
+  #     puts "Would you like to print the current balance of your account? (Y/N)"
+  #     user_response = gets.chomp.downcase
+  #     if user_response == "y" || user_response == "yes"
+  #       display_balance
+  #     end
+  #   end
+  # end
 
-  def deposit (deposit_amount)
-    $balance = deposit_amount + $balance
-    puts "Would you like to print the Balance"
-    user_response = gets.chomp.downcase
-    if user_response == "y" user_response == "yes"
-        display_balance
-    elsif user_response == "n" user_response == "no"
-      puts "Would you like to do anything else"
-      user_input == gets.chomp.downcase
-      if user_input == "y"
-      end
-    end
-  end
+  # def deposit (deposit_amount)
+  #   $balance = deposit_amount + $balance
+  #   puts "Would you like to print the Balance"
+  #   user_response = gets.chomp.downcase
+  #   if user_response == "y" user_response == "yes"
+  #       display_balance
+  #   elsif user_response == "n" user_response == "no"
+  #     puts "Would you like to do anything else"
+  #     user_input == gets.chomp.downcase
+  #     if user_input == "y"
+  #     end
+  #   end
+  # end
 end
 
 ATM.new.run 
