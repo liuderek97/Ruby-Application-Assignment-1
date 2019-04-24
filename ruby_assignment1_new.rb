@@ -28,10 +28,12 @@ module Account
     end
 
     def account_withdraw(user_id, withdraw_amount)
+        
         if withdraw_amount > @account[user_id]
             puts "Error you cannot withdraw an amount that exceeds the account balance."
         
         elsif withdraw_amount <= @account[user_id]
+            @account[user_id] = @account[user_id] - withdraw_amount
             puts "withdrawal successful"
             puts "New account balance is: #{@account[user_id]}"
         else
@@ -40,6 +42,10 @@ module Account
     end
 
 end
+
+class User
+
+    def initialize(name, age, )
 
 include Account
 Account.create_account(:hello, 40.0)
