@@ -53,7 +53,7 @@ class ATM
       if @user
         puts "Please enter your password"
         password = gets.chomp
-        if User.password_checker(password)
+        if User.password_checker(password, @user)
           break
         end
       else
@@ -117,7 +117,6 @@ class ATM
 
   def menu
     Account.display_accounts(@user)
-  
   end
 
   def deposit(amount)
@@ -157,12 +156,18 @@ class User
   #class level variables hold data that belongs to the class
   #class instance array containing a hash for each user
   @users = [ 
-    { user_name: "johny123", name: "john", age: "19", password: "password" }, 
-    { user_name: "mike3",    name: "mike", age: "25", password: "password" },
-    { user_name: "guy",      name: "guy",  age: "27", password: "password" }
+    { user_name: "johny123", name: "john", age: "19", password: "password1" }, 
+    { user_name: "mike3",    name: "mike", age: "25", password: "password2" },
+    { user_name: "guy123",      name: "guy",  age: "27", password: "password3" }
   ]
-  def self.password_checker(password)
-    password = @users
+
+  def self.password_checker(password, user)
+    p password
+    password  = @users.find { |user| user[:password] == password } && 
+    user = @users.detect { |user| user[:user_name] == user }
+    return true 
+    p user 
+    p password
   end
 
   def self.find_by_user_name(user_name)
@@ -175,7 +180,7 @@ class User
 
   def self.make_instance(user)
     #when in class methods, self is the class object
-    new(user[:user_name], user[:name], user[:age], user[:password])
+    self.new(user[:user_name], user[:name], user[:age], user[:password])
   end
   
   #create puts passed params into a hash, then adds hash to user array
