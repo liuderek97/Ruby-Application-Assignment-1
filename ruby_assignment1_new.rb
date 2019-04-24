@@ -1,3 +1,4 @@
+#Module to create an account 
 module Account
 
     @account = {}
@@ -84,12 +85,34 @@ class User
     def verify_user_exists(user_name, password)
         if user_name == @user_name && password = @password
             puts "user exists"
-            puts user_name
-        end
-        
-        if user_name != @user_name && password != @password
+            puts "Welcome #{user_name}"
+
+        elsif user_name != @user_name && password != @password
             puts "user does not exist"
+            puts "Please create an account"
+            create_user
+
+        elsif user_name == @user_name && password != @password
+            puts "Incorrect password please try again"
         end
+
+    end
+    #method top create a user object
+    def create_user
+        puts "Please enter your first name:"
+        user_first_name = gets.chomp
+        puts "Please enter your last name:"
+        user_last_name = gets.chomp
+        puts "Please enter your age:"
+        user_age = gets.chomp.to_i
+        puts "Please enter the username you would like:"
+        user_name = gets.chomp
+        puts "Please enter the password you would like to use:"
+        user_password = gets.chomp
+        user_id = user_first_name + user_last_name
+        user_id = User.new(user_first_name, user_last_name, user_age, user_name, user_password)
+        #test to see if created object exists and holds all previous entered info from the method
+        user_id.verify_user_exists(user_name, user_password)
     end
 end
 
@@ -106,3 +129,5 @@ test = User.new("Derek", "Liu", 21, "LiuDerek", "hello")
 test.verify_user_exists("LiuDerek", "hello")
 test1 = User.new("Derek3", "Liu", 21, "LiuDerek3", "hello3")
 test1.verify_user_exists("LiuDerek3", "hello3")
+#test to see if the account exists when entering wrong credentials
+test1.verify_user_exists("LiuDerek", "hello")
