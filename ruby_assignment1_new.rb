@@ -2,12 +2,14 @@
 module Account
 
     @account = {}
-    @account[:hi] = 40.0
-    @account[:hello] = 50.0
+    @account[:hi] = 40.00
+    @account[:hello] = 50.00
 
-    def create_account(id, balance)
-        @account[:id] = balance  
-        puts @account
+    def create_account(account_id, balance)
+        @account[account_id] = balance  
+        puts "Bank Account Created"
+        print_account_details(account_id)
+
     end
 
     def does_account_exist
@@ -66,18 +68,27 @@ module Account
         end
     end
 
+    def print_account_details(account_id)
+        if @account.has_key?(account_id)
+            puts "Your Bank Account Details are as follows:"
+            puts "Account ID: #{account_id}"
+            puts "Account Balance: #{@account[account_id]}"
+        end
+    end
+
 
 
 end
 
 class User
-    attr_reader :first_name, :last_name, :age, :user_name, :password
-    def initialize(first_name,last_name, age, user_name, password)
+    attr_reader :first_name, :last_name, :age, :user_name, :password, :account_id
+    def initialize(first_name,last_name, age, user_name, password, account_id)
         @first_name = first_name
         @last_name = last_name
         @age = age
         @user_name = user_name
         @password = password
+        @account_id = account_id
     end
    
     #Method to check if a user exists still being worked on. 
@@ -98,37 +109,59 @@ class User
 
     end
     #method top create a user object
-    def create_user
+    def self.create_user
         puts "Please enter your first name:"
         user_first_name = gets.chomp
+
         puts "Please enter your last name:"
         user_last_name = gets.chomp
+        
         puts "Please enter your age:"
         user_age = gets.chomp.to_i
+        
         puts "Please enter the username you would like:"
         user_name = gets.chomp
+        
         puts "Please enter the password you would like to use:"
         user_password = gets.chomp
         user_id = user_first_name + user_last_name
-        user_id = User.new(user_first_name, user_last_name, user_age, user_name, user_password)
+        temp_account_id = user_last_name + user_first_name + user_age.to_s
+        account_id = temp_account_id.to_sym
+        puts account_id
+        user_id = User.new(user_first_name, user_last_name, user_age, user_name, user_password, account_id)
         #test to see if created object exists and holds all previous entered info from the method
         user_id.verify_user_exists(user_name, user_password)
+        Account.create_account(account_id, 0.00)
+        User.print_user_details(user_id)
     end
+
+    def self.print_user_details(user)
+        puts "Your Account details are as follows:"
+        puts "First Name: #{user.first_name}"
+        puts "Last Name: #{user.last_name}"
+        puts "Age: #{user.age}"
+        puts "Your unique user ID: #{user.account_id}"
+    end
+        
 end
 
 include Account
-Account.create_account(:hello, 40.0)
-Account.does_account_exist
-Account.account_deposit(:hi, 10.0)
-# Account.account_withdraw(:hi, 50.0)
-# Account.account_withdraw(:hello, 40.0)
-Account.transfer_from_account
 
-#Tests to check if objects created exist and can be verified
-test = User.new("Derek", "Liu", 21, "LiuDerek", "hello")
-test.verify_user_exists("LiuDerek", "hello")
-test1 = User.new("Derek3", "Liu", 21, "LiuDerek3", "hello3")
-test1.verify_user_exists("LiuDerek3", "hello3")
-#test to see if the account exists when entering wrong credentials
-#test1.verify_user_exists("LiuDerek", "hello")
-puts test1.first_name
+User.create_user
+# Account.create_account(:hello, 40.0)
+# Account.does_account_exist
+# # Account.account_deposit(:hi, 10.0)
+# # # Account.account_withdraw(:hi, 50.0)
+# # # Account.account_withdraw(:hello, 40.0)
+# # Account.transfer_from_account
+
+# #Tests to check if objects created exist and can be verified
+#  test = User.new("Derek", "Liu", 21, "LiuDerek", "hello", "KKKK")
+#  User.print_user_details(test)
+# test.verify_user_exists("LiuDerek", "hello")
+# test1 = User.new("Derek3", "Liu", 21, "LiuDerek3", "hello3", "HHH")
+# test1.verify_user_exists("LiuDerek3", "hello3")
+# #test to see if the account exists when entering wrong credentials
+# test1.verify_user_exists("LiuDerek", "hello")
+# # puts test1.first_name
+# # User.print_user_details(test)
