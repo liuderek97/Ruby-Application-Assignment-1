@@ -4,7 +4,7 @@ class Account
   extend AccountDB
 
   def self.display_user_accounts(user_name)
-    puts "user passed is #{user_name}"
+    # puts "user passed is #{user_name}"
     user_accounts = find_by_user_name(user_name)
     # puts user_accounts.inspect
     # user_accounts.each { |account| puts "#{account.id} #{account.name} #{account.balance}" }

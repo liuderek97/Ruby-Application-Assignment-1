@@ -7,7 +7,6 @@ class ATM
       case input.downcase
       when "l"
         login
-        puts "user is #{@user.inspect}"
         break
       when "c"
         create_account
@@ -31,6 +30,7 @@ class ATM
         password == @user.password ? break : puts("wrong password")
       end
     end
+
   end
 
   def create_account 
@@ -45,9 +45,11 @@ class ATM
 
     #@create method returns the instance
     @user = User.create(user_name, name, age, password)
-  end
 
-  def menu
-    
   end
+  
+  # def menu
+  #   user_name = @user
+  #   Account.display_user_accounts(@user)
+  # end
 end

@@ -6,12 +6,11 @@ module AccountDB
   ]
 
   def find_by_user_name(user_name)
-    #we need to: 
-    #create an array entry if it matches the condition and return what the block returns 
     accounts = @@accounts.select { |account| account[:user_name] == user_name } 
     puts accounts
     account_objects = accounts.map { |account| make_instance(account) }
     puts account_objects
+
     # accounts = @@accounts.something do |account|
     #   if account[:user_name] == user_name
     #     make_instance(account)
