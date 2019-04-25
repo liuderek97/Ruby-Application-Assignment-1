@@ -13,7 +13,7 @@ class Terminal
     value
   end
   
-  def self.ask_int(question, min: 0)
+  def self.ask_int(question, min: 16)
     value = 0
     loop do 
       puts question

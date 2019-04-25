@@ -6,21 +6,23 @@ module AccountDB
   ]
 
   def find_by_user_name(user_name)
-    #collect iterates through array, returns new array with results of block
-    accounts = @@accounts.collect do |account| 
-      if account[:user_name] == user_name
-        make_instance(account)
-      end
-    end
+    #we need to: 
+    #create an array entry if it matches the condition and return what the block returns 
+
+    # accounts = @@accounts.something do |account|
+    #   if account[:user_name] == user_name
+    #     make_instance(account)
+    #   end
+    # end
   end
-  
+
   def find_by_id(id)
     account = @@accounts.detect { |accounts| accounts[:id] == id }
     account ? make_instance(account) : nil
   end
 
-  def make_instance(user)
-    new(@@accounts[:id], @@accounts[:user_name], @@accounts[:name], @@accounts[:balance])
+  def make_instance(account)
+    new(account[:id], account[:user_name], account[:name], account[:balance])
   end 
 
   def create(user_name, name, balance)
