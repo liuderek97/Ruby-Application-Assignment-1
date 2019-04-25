@@ -46,11 +46,43 @@ class ATM
     account_name = Terminal.ask_string("What is the account name?")
     @account = Account.create(@user.user_name, account_name, 0)
   end
-
+  
+  def deposit
+    puts "which account would you like to deposit by number"
+    account_id = gets.chomp.to_i
+    @account = Account.find_by_id(account_id)
+    if @account
+      puts "How much would you like to deposit?"
+      deposit_amount = gets.chomp.to_i
+      @account.balance += deposit_amount
+      @account.save
+    else
+      puts "that account doesnt exist"
+    end
+  end
+  
+  def withdraw
+    puts "Which Account would you like to withdraw from"
+    account_id = gets.chomp.to_i
+    @account = Account.find_by_id(account_id)
+    if @account
+      loop do
+        puts "How much would you like to withdraw from the account max:#{@account.balance}"
+        withdraw_amount = gets.chomp.to_i
+        if withdraw_amount <= @account.balance
+          @account.balance -= withdraw_amount
+          @account.save
+          break
+        else
+          puts "withdraw valid amount"
+        end
+      end
+    end
+  end
+      
   def menu
-    loop do 
+    loop do
       @accounts = Account.find_by_user_name(@user.user_name)
-      system "clear"
       if @accounts.count > 0
         puts "Accounts:"
         @accounts.each { |account| puts "#{account.id}. #{account.name} $#{account.balance}" } 
@@ -59,9 +91,9 @@ class ATM
       case input = gets.chomp.downcase
       when "open"
         open_account
-      when "D"
+      when "d"
         deposit
-      when "W"
+      when "w"
         withdraw
       else
         puts "Not a valid option"

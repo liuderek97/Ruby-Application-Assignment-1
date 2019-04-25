@@ -28,7 +28,7 @@ module AccountDB
     @@accounts_array << accounts_hash
     make_instance(accounts_hash)
   end
-  
+
   def save_object_as_hash_in_array(account)
     index = @@accounts_array.index { |account_hash| account_hash[:id] == account.id }
     @@accounts_array[index] = {
