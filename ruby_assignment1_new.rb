@@ -60,7 +60,7 @@ module Account
             transferring_account_balance = @account[user_transfer_from]
             receiveing_account_balance = @account[user_transfer_to]
             #Update the balance of both accounts when transferring from one account to another
-            @account[user_transfer_from] =  - user_transfer_amount + transferring_account_balance
+            @account[user_transfer_from] = user_transfer_amount + transferring_account_balance
             @account[user_transfer_to] = receiveing_account_balance + user_transfer_amount
 
             puts"The new amount of the account:#{user_transfer_from} is #{@account[user_transfer_from]}"
