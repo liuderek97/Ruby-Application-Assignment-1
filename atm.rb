@@ -40,14 +40,41 @@ class ATM
     password  = Terminal.ask_string("What would you like your password to be?")
     #@create method returns the instance
     @user = User.create(user_name, name, age, password)
-
   end
   
+  def open_account
+    account_name = Terminal.ask_string("What is the account name?")
+    @account = Account.create(@user.user_name, account_name, 0)
+  end
+
   def menu
-    @accounts = Account.find_by_user_name(@user.user_name)
-    @accounts.each { |account| puts "#{account.id}. #{account.name} $#{account.balance}" } 
-    puts "(Open) an account" 
-    puts "(D)eposit"
-    puts "(W)ithdraw"
+    loop do 
+      @accounts = Account.find_by_user_name(@user.user_name)
+      system "clear"
+      if @accounts.count > 0
+        puts "Accounts:"
+        @accounts.each { |account| puts "#{account.id}. #{account.name} $#{account.balance}" } 
+      end
+      puts "(Open) an account, (D)eposit, (W)ithdraw" 
+      case input = gets.chomp.downcase
+      when "open"
+        open_account
+      when "D"
+        deposit
+      when "W"
+        withdraw
+      else
+        puts "Not a valid option"
+      end
+    end
   end
 end
+
+#deposit
+#which account 
+# check if account exists 
+# if it exists ask how much the user would like to deposit 
+# make sure the minimum is one 
+# when the account is found it should return the object
+# account.balance + depoit amount
+# account.save 
