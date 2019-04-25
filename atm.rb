@@ -70,10 +70,10 @@ class ATM
         puts "How much would you like to withdraw from the account max:#{@account.balance}"
         withdraw_amount = gets.chomp.to_i
         if withdraw_amount <= @account.balance
-          @account.balance -= withdraw_amount
+          @account.balance = @account.balance - withdraw_amount
           @account.save
           break
-        else
+        elsif withdraw_amount > @account.balance
           puts "withdraw valid amount"
         end
       end
