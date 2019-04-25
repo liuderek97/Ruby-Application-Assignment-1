@@ -1,36 +1,41 @@
 module AccountDB
-  @@accounts = [ 
+  #accounts array
+  @@accounts_array = [ 
     { id: 123, user_name: "johny123", name: "savings",   balance:   15 }, 
     { id: 345, user_name: "guy123",   name: "checking",  balance: 1530 },
     { id: 567, user_name: "guy123",   name: "investing", balance:  925 }
   ]
 
   def find_by_user_name(user_name)
-    accounts = @@accounts.select { |account| account[:user_name] == user_name } 
-    puts accounts
-    account_objects = accounts.map { |account| make_instance(account) }
-    puts account_objects
+    #user accounts data
+    user_accounts_array = @@accounts_array.select { |account_hash| account_hash[:user_name] == user_name } 
+    #block variable account hash
+    accounts = user_accounts_array.map { |account_hash| make_instance(account_hash) }
+    
+    
+    # && accounts[:user_name] == username}
 
-    # accounts = @@accounts.something do |account|
+    # accounts = @@account_array.something do |account|
     #   if account[:user_name] == user_name
     #     make_instance(account)
     #   end
     # end
   end
-
+#
   def find_by_id(id)
-    account = @@accounts.detect { |accounts| accounts[:id] == id }
-    account ? make_instance(account) : nil
+    account_hash = @@accounts_array.detect { |account_hash| account_hash[:id] == id }
+    account_hash ? make_instance(account_hash) : nil
   end
 
-  def make_instance(account)
-    new(account[:id], account[:user_name], account[:name], account[:balance])
+  def make_instance(account_hash)
+    new(account_hash[:id], account_hash[:user_name], account_hash[:name], account_hash[:balance])
   end 
 
   def create(user_name, name, balance)
     id = new_account_number
-    @@accounts << { id: id, user_name: user_name, name: name, balance: balance }
-    find_by_id(id)
+    accounts_hash == { id: id, user_name: user_name, name: name, balance: balance }
+    @@accounts_array << accounts_hash
+    make_instance(accounts_hash)
   end
 
   def new_account_number
