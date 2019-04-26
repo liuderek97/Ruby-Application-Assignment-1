@@ -63,7 +63,7 @@ class ATM
     if @account
       puts "How much would you like to deposit?"
       deposit_amount = gets.chomp.to_f
-      @account.balance += deposit_amount
+      @account.balance = @account.balace + deposit_amount
       @account.save
     else
       puts "that account doesnt exist"
