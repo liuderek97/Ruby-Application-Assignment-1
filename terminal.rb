@@ -1,3 +1,4 @@
+  #class variables to simplify asking questions relating to strings or integers in terminal
 class Terminal
   def self.ask_string(question)
     value = ""
