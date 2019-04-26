@@ -62,7 +62,7 @@ o	By having a unique identifier for each individual accounts  for security purpo
 
 
 
-#Application Code structure#
+Application Code structure
 
  During the planning phase of the project it was proposed that the application be split into separate files. The application was split into separate files in order to create cleaner code allow for the application to be coded with a logical flow.  The application was split into separate files, being:
 o	bank_app.rb 
