@@ -70,10 +70,10 @@ class ATM
       elsif
         @account.balance = @account.balance + deposit_amount
         @account.save
-    else
-      puts "that account doesnt exist"
-    end 
-  end
+      else
+        puts "that account doesnt exist"
+      end 
+    end
   end
 
   def withdraw
