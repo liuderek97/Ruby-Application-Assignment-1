@@ -10,7 +10,8 @@ If invalid input, you will be told so, then asked the question again.
 
 Banking Application Planning
 
-#Project Planning Tools#
+Project Planning Tools
+
 •	Trello
 o	In order to keep on top of the Project a Trello board was created to ensure that each member of the project had tasks delegated to them and knew the deadline for each assigned task. When a task was created, a deadline and team member was assigned to the specific task, the individual team member assigned to the task would be responsible for the management of that task on Trello; updating the status of the task and adding any necessary comments or descriptions and ensuring that the task is completed before the deadline.
 •	Github
@@ -19,13 +20,14 @@ o	Link to GitHub repository: https://github.com/liuderek97/Ruby-Application-Assi
 
 •	Discord
 o	Discord was the main communication platform employed by all members when discussing the project outside of contact hours. Discord was the chosen platform for communication as all users were familiar with the platform and using a communication platform that all users were comfortable with would allow for unhindered communication channels, and allow effective and efficient communication.
+
 •	Collalbedit
-o	Collabedit is a code sharing platform allowing for multiple users to edit the same console online. Team members would use Collabedit when working on the application to allow for effective collaborative teamwork. Collabedit allowed for members to work on the same program in real time, and was essential to the completion of the application, as it allowed for members to discuss and plan the structure of the code when designing and implementing features present in the application. Furthermore it allowed for members to not only understand the thought process but the logical flow of certain functions as the code could be explained and produced in real time allowing for members to discuss their thought process, and inner workings for the various functions and logical flow of the application.
+o	Collabedit is a code sharing platform allowing for multiple users to edit the same console online. Team members would use    Collabedit when working on the application to allow for effective collaborative teamwork. Collabedit allowed for members to work on the same program in real time, and was essential to the completion of the application, as it allowed for members to discuss and plan the structure of the code when designing and implementing features present in the application. Furthermore it allowed for members to not only understand the thought process but the logical flow of certain functions as the code could be explained and produced in real time allowing for members to discuss their thought process, and inner workings for the various functions and logical flow of the application.
 
 
 
 
-#Application Planning Stage and Feature Explanation#
+Application Planning Stage and Feature Explanation
 
 After completing a feasibility assessment on all the proposed applications, and selecting the application after the evaluation, the team started planning out the features and structure of the code.  In order to plan the application, members sat down and wrote out what features the application would have, how they would be implemented and propositions of features that could be added on during the completion of the project. In the early stages of the project a majority of the early pseudocode, structure and ideas were written down in a book discussed between each member. After writing down the early tasks that needed to be completed, tasks were then created and uploaded to a Trello board. When the tasks were moved to the Trello board they were then assigned to a team member and set a deadline, it was then up to each individual member to then handle all requirements in relation to each task; completing the task, adding any necessary comments about the task, ensuring the task be completed and delivered and moving the task to the appropriate list: To Do, Doing and Done. After early planning stages the following features were proposed and implemented into the application. The proposed and implemented features were as follows.
 
@@ -141,14 +143,14 @@ o	create(user_name, name, age, password)
 
 
 
-#Project Issues and future implementations#
+Project Issues and future implementations
 
 Organisation of code and naming convention
 When development of the chosen application commenced the team was faced with several issues in relation to the coding and structure of the program. When first starting the project the team created the application in a single file that housed a number of classes and modules. The housing of different classes and modules in a single file impeded on the logical flow of the code and significantly reduced the readability of the applications code. This became a significant issue when the code did not work as desired as it meant that the whole contents of the file had to be examined thoroughly, in order to identify where the problem had taken place. In order to combat this issue the different modules and classes were all separated into their own files. This allowed for greater readability and logical flow of code when both executing the application and reading the code itself.
 
 The other problem that the team experienced was the naming convention of certain variables. At the beginning of the project many variables had similar names to one another and were undescriptive of what information the variable stored. This would be a significant issue as because of the unconventional and undescriptive naming convention, team members would find it difficult as to how to application itself worked, this also posed a problem as team members would be confused and call upon the wrong variables when performing certain actions in the code. To combat this issue the team ensured that when naming variables the names would be descriptive and immediately allow for the individual to know it’s purpose.
 
-#Future implementations#
+Future implementations
 
 •	Write account transactions and details to a text file
 o	The ability to for the application to allow users to append their account transactions would increase the functionality of the application and further imitate a real world banking system, as it would allow for the application to produce account statements which will hold any account transaction information and provide users with a greater insight into their account and all the transactions that have taken place in respect to their private accounts.
