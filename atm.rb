@@ -67,12 +67,13 @@ class ATM
       deposit_amount = gets.chomp.to_f
       if deposit_amount < 0
         puts "please deposit more than 0"
-      else
+      elsif
         @account.balance = @account.balance + deposit_amount
         @account.save
     else
       puts "that account doesnt exist"
     end 
+  end
   end
 
   def withdraw
