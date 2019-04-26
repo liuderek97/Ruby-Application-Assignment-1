@@ -2,8 +2,8 @@ module AccountDB
   #accounts array stores information we can use to create accounts
   @@accounts_array = [ 
     { id: 1234, user_name: "johny123", name: "savings",   balance:   15.00 }, 
-    { id: 3452, user_name: "guy123",   name: "checking",  balance: 1530.00 },
-    { id: 5671, user_name: "guy123",   name: "investing", balance:  925.00 }
+    { id: 3452, user_name: "david3",   name: "checking",  balance: 1530.00 },
+    { id: 5671, user_name: "david3",   name: "investing", balance:  925.00 }
   ]
 
   def find_by_user_name(user_name)

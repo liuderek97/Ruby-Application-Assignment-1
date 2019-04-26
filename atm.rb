@@ -42,7 +42,7 @@ class ATM
   def create_user
     name      = Terminal.ask_string("What is your full name?")
     #ask int compares age to a value as well as ensuring a valid input 
-    age       = Terminal.ask_int("How old are you?")
+    age       = Terminal.ask_int("How old are you?", min: 16)
     user_name = Terminal.ask_string("What would you like your username to be?")
     password  = Terminal.ask_string("What would you like your password to be?")
     #@create method returns the instance
@@ -58,7 +58,7 @@ class ATM
   end
 
   def deposit
-    puts "which account would you like to deposit by account id"
+    puts "which account would you like to deposit into by account id"
     account_id = gets.chomp.to_i
     @account = Account.find_by_id(account_id)
     #stores a valid account in @account variable to be called later
@@ -89,7 +89,7 @@ class ATM
           @account.save
           break
         elsif withdraw_amount > @account.balance
-          puts "withdraw valid amount"
+          puts "You do not have enough money in the account"
         end
       end
     end
@@ -145,12 +145,3 @@ class ATM
     end
   end
 end
-
-#deposit
-#which account 
-# check if account exists 
-# if it exists ask how much the user would like to deposit 
-# make sure the minimum is one 
-# when the account is found it should return the object
-# account.balance + depoit amount
-# account.save 

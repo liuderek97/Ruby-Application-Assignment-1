@@ -14,7 +14,7 @@ class Terminal
     value
   end
 #named parameters are not the only exception to parameters being neccessary 
-  def self.ask_int(question, min: 16, max: 9999999)
+  def self.ask_int(question, min: 0, max: 9999999)
     value = 0
     loop do 
       puts question

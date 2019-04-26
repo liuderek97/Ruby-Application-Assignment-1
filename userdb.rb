@@ -5,7 +5,7 @@ module UserDB
   @@users_array = [ 
     { user_name: "johny123", name: "john", age: "19", password: "password1" }, 
     { user_name: "mike3",    name: "mike", age: "25", password: "password2" },
-    { user_name: "guy123",   name: "guy",  age: "27", password: "password3" }
+    { user_name: "david3",   name: "david",age: "27", password: "password3" }
   ]
 
   def find_by_user_name(user_name)
