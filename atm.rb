@@ -135,6 +135,9 @@ class ATM
         withdraw
       when 4
         transfer
+      when 5
+        puts "Thank you. Have a nice day"
+        exit
       else
         puts "Not a valid option"
       end
