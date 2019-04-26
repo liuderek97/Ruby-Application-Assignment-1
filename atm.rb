@@ -30,6 +30,10 @@ class ATM
       else
         Account.display_user_accounts(user_name)
         password = Terminal.ask_string("Please enter your password")
+        #ternary operator evaluating if the password entered is the correct password 
+        # or exist based on comparisons to existing passwords if the password is wrong
+        # the expression evaluates false and will print a message notifying the user of
+        #the error
         password == @user.password ? break : puts("wrong password")
       end
     end
@@ -75,10 +79,10 @@ class ATM
         puts "How much would you like to withdraw from the account max:#{@account.balance}"
         withdraw_amount = gets.chomp.to_f
         if withdraw_amount <= @account.balance
-          @account.balance -= withdraw_amount
+          @account.balance = @account.balance - withdraw_amount
           @account.save
           break
-        else
+        elsif withdraw_amount > @account.balance
           puts "withdraw valid amount"
         end
       end
