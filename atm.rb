@@ -65,7 +65,7 @@ class ATM
     if @account
       puts "How much would you like to deposit?"
       deposit_amount = gets.chomp.to_f
-      @account.balance = @account.balace + deposit_amount
+      @account.balance = @account.balance + deposit_amount
       @account.save
     else
       puts "that account doesnt exist"
@@ -122,7 +122,7 @@ class ATM
         #iterates through the account object and displays each piece of information
         @accounts.each { |account| puts "#{account.id}. #{account.name} $#{account.balance.round(2)}" } 
       end
-      puts "1. Open an account \n2. Deposit, \n3. Withdraw \n4. Transfer" 
+      puts "1. Open an account \n2. Deposit, \n3. Withdraw \n4. Transfer \n5. Exit" 
       case input = gets.chomp.to_i
       when 1
         open_account
@@ -132,6 +132,9 @@ class ATM
         withdraw
       when 4
         transfer
+      when 5
+        puts "Thank you. Have a nice day"
+        exit
       else
         puts "Not a valid option"
       end
