@@ -120,15 +120,15 @@ class ATM
         #iterates through the account object and displays each piece of information
         @accounts.each { |account| puts "#{account.id}. #{account.name} $#{account.balance.round(2)}" } 
       end
-      puts "(Open) an account, (D)eposit, (W)ithdraw" 
-      case input = gets.chomp.downcase
-      when "open"
+      puts "1. Open an account \n2. Deposit, \n3. Withdraw \n4. Transfer" 
+      case input = gets.chomp.to_i
+      when 1
         open_account
-      when "d"
+      when 2
         deposit
-      when "w"
+      when 3
         withdraw
-      when "t"
+      when 4
         transfer
       else
         puts "Not a valid option"
