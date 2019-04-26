@@ -47,14 +47,16 @@ class ATM
     password  = Terminal.ask_string("What would you like your password to be?")
     #@create method returns the instance
     @user = User.create(user_name, name, age, password)
+    puts "Thank you for making an account with us, please open a bank account"
+    open_account
   end
-  
+
   def open_account
     account_name = Terminal.ask_string("What is the account name?")
     #stores a newly created account in @account variable
     @account = Account.create(@user.user_name, account_name, 0)
   end
-  
+
   def deposit
     puts "which account would you like to deposit by account id"
     account_id = gets.chomp.to_i
