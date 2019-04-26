@@ -88,7 +88,30 @@ class ATM
       end
     end
   end
-      
+
+  def transfer 
+  from_account_id = Terminal.ask_int("What account would you like to transfer from")
+  @from_account = Account.find_by_id(from_account_id)
+  if !@from_account
+    puts "Account not found"
+  elsif @from_account.balance == 0 
+    puts "sorry, no money in that account."
+  else
+    puts "error"
+  end
+  from_amount = Terminal.ask_int("How much to transfer? max: $#{@from_account.balance}", max: @from_account.balance)
+  to_account_id = Terminal.ask_int("What account would you like to transfer to")
+  @to_account_id = Account.find_by_id(to_account_id)
+  if !to_account_id
+    puts"Account not found"
+  else
+    @from_account.balance = @from_account.balance - from_amount
+    @to_account_id.balance += from_amount
+    @from_account.save
+    @to_account_id.save
+    end
+  end
+
   def menu
     loop do
       @accounts = Account.find_by_user_name(@user.user_name)
@@ -105,6 +128,8 @@ class ATM
         deposit
       when "w"
         withdraw
+      when "t"
+        transfer
       else
         puts "Not a valid option"
       end
